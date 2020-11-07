@@ -1,0 +1,20 @@
+componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.socket.emit('position', {
+          data: position,
+          id: this.id
+        })
+      },
+      (error) => console.log(error),
+      {enableHighAccuracy: true, timeout: 20000, distanceFilter: 10},
+    );
+  }
+
+  this.socket.on('otherPositions', (positionsData) => {
+    let tempFriends = {...this.state.friends}
+    tempFriends[positionsData.id] = {...positionsData}
+    this.setState({
+      friends: tempFriends
+    })
+  })
