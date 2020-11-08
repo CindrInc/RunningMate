@@ -1,18 +1,38 @@
-const Express = require("express")();
-const Http = require("http").Server(Express);
-const Socketio = require("socket.io")(Http);
+// var app = require('express')();
+// var http = require('http').createServer(app);
 
-Http.listen(3000, () => {
-    console.log("Listening at :3000...");
+// // app.get('/', (req, res) => {
+// //   res.send('<h1>Hello world</h1>');
+// // });
+// app.get('/', (req, res) => {
+//     res.sendFile(__dirname + '/index.html');
+//   });
+// http.listen(3000, () => {
+//   console.log('listening on *:3000');
+// });
+
+var app = require('express')();
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
 });
 
-const markers = [];
-
-Socketio.on("connection", socket => {
-    socket.emit(markers);
-    socket.on("marker", data => {
-        markers.push(data);
-        Socketio.emit("marker", data);
-    });
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+  
 });
 
+io.on('connection', (socket) => {
+    socket.on('chat message', (msg) => {
+        io.emit('chat message', msg);
+      });
+});
+
+http.listen(3000, () => {
+  console.log('listening on *:3000');
+});

@@ -4,22 +4,18 @@ import { Alert, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 
-export default function TabOneScreen({ navigation }) {
+export default function Profile({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>RUNNINGMATE</Text>
-      <Text>Enter Distance (Miles):</Text>
-      <TextInput style={styles.input} />
-      <TouchableOpacity onPress={() => navigation.navigate('Locations') }>
-        <Text>Enter</Text>
+      <Text style={styles.title}>Profile</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("TabOneScreen")}>
+        <View
+          style={styles.separator}
+          lightColor="#eee"
+          darkColor="rgba(255,255,255,0.1)"
+        />
       </TouchableOpacity>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="/screens/TabOneScreen.js" />
-      <TouchableOpacity onPress={() => navigation.navigate("MainScreen")}>
+      <TouchableOpacity onPress={() => navigation.pop()}>
         <Text>Back</Text>
       </TouchableOpacity>
     </View>
@@ -34,9 +30,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 100,
-    fontWeight: 'bold',
-    fontFamily: 'Menlo',
-    color: 'red'
+    fontFamily: "Optima",
+    fontWeight: "bold",
+    color: "#64D7FF"
   },
   separator: {
     marginVertical: 30,
