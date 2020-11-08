@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Alert, StyleSheet, TextInput, TouchableOpacity } from "react-native";
-import RadioGroup from 'react-native-radio-button-group';
+import RadioGroup from '../react-native-radio-button-group';
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 
@@ -20,18 +20,17 @@ export default function TabOneScreen({ navigation }) {
       <Text>Enter Distance (Miles):</Text>
       <TextInput style={styles.input} />
       <Text>Generally, would you like to go North or South?</Text>
-      <RadioGroup
-        horizontal
-        options={radiogroup1_options}
+      <RadioGroup horizontal options={radiogroup1_options}
         circleStyle={{ fillColor: 'pink', borderColor: 'pink' }}
+        activeButtonId={0}
       />
     
 
       <Text>Generally, would you like to go East or West?</Text>
       <RadioGroup
-        horizontal
-        options={radiogroup2_options}
+        horizontal options={radiogroup2_options}
         circleStyle={{ fillColor: 'pink', borderColor: 'pink' }}
+        activeButtonId={0}
       />
       <TouchableOpacity onPress={() => navigation.navigate('Locations') }>
         <Text>Enter</Text>
@@ -41,7 +40,7 @@ export default function TabOneScreen({ navigation }) {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <TouchableOpacity onPress={() => navigation.navigate("MainScreen")}>
+      <TouchableOpacity onPress={() => navigation.pop()}>
         <Text>Back</Text>
       </TouchableOpacity>
     </View>
@@ -62,7 +61,6 @@ const styles = StyleSheet.create({
   },
   separator: {
     marginVertical: 30,
-    height: 1,
     width: "80%"
   },
   input: {
