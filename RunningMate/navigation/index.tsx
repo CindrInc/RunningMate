@@ -16,9 +16,10 @@ import Mates from "../screens/Mates";
 import History from "../screens/History";
 import Profile from "../screens/Profile";
 import JoinRun from "../screens/JoinRun";
+import Login from "../screens/Login";
+
 import { RootStackParamList } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
-
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -49,6 +50,7 @@ function RootNavigator() {
       <Stack.Screen name="Mates" component={Mates} />
       <Stack.Screen name="History" component={History} />
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Locations" component={Locations} />
       <Stack.Screen name="JoinRun" component={JoinRun} />
     </Stack.Navigator>

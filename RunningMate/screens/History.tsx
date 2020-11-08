@@ -8,15 +8,9 @@ export default function History({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>History</Text>
-      <TouchableOpacity onPress={() => navigation.navigate("TabOneScreen")}>
-        <View
-          style={styles.separator}
-          lightColor="#eee"
-          darkColor="rgba(255,255,255,0.1)"
-        />
-      </TouchableOpacity>
+      <View style={styles.separator} />
       <TouchableOpacity onPress={() => navigation.pop()}>
-        <Text>Back</Text>
+        <Text style={[styles.text]}>Back</Text>
       </TouchableOpacity>
     </View>
   );
@@ -26,7 +20,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor: "#000000"
   },
   title: {
     fontSize: 100,
@@ -35,9 +30,7 @@ const styles = StyleSheet.create({
     color: "#64D7FF"
   },
   separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%"
+    marginVertical: 100
   },
   input: {
     borderWidth: 1,
@@ -45,5 +38,8 @@ const styles = StyleSheet.create({
     padding: 8,
     margin: 10,
     width: 100
+  },
+  text: {
+    color: "#ffffff"
   }
 });
