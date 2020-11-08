@@ -31,6 +31,14 @@ export default function MainScreen({ navigation }) {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
+      <TouchableOpacity onPress={() => navigation.navigate("JoinRun")}>
+        <Text>Join a mate</Text>
+      </TouchableOpacity>
+      <View
+        style={styles.separator}
+        lightColor="#eee"
+        darkColor="rgba(255,255,255,0.1)"
+      />
       <TouchableOpacity onPress={() => navigation.navigate("Mates")}>
         <Text>Mates</Text>
       </TouchableOpacity>
@@ -55,6 +63,7 @@ export default function MainScreen({ navigation }) {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
+      
     </View>
   );
 }

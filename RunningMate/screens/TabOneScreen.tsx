@@ -1,8 +1,10 @@
 import * as React from "react";
 import { Alert, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import RadioGroup from '../react-native-radio-button-group';
+import {Picker} from '@react-native-picker/picker';
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
+import { State } from "react-native-gesture-handler";
 
 var radiogroup1_options = [
   {id: 0, label: 'North' },
@@ -16,7 +18,7 @@ var radiogroup2_options = [
 export default function TabOneScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>RUNNING MATE</Text>
+      <Text style={styles.title}>Running Mate</Text>
       <Text>Enter Distance (Miles):</Text>
       <TextInput style={styles.input} />
       <Text>Generally, would you like to go North or South?</Text>
@@ -32,6 +34,14 @@ export default function TabOneScreen({ navigation }) {
         circleStyle={{ fillColor: 'pink', borderColor: 'pink' }}
         activeButtonId={0}
       />
+
+      <Text>Choose a mate.</Text>
+      <Picker style={{height: 25, width: 100}}>
+        
+        <Picker.Item label="KingNeptune" value="KingNeptune" />
+        <Picker.Item label="kylzhng" value="kylzhng" />
+      </Picker>
+
       <TouchableOpacity onPress={() => navigation.navigate('Locations') }>
         <Text>Enter</Text>
       </TouchableOpacity>
@@ -68,6 +78,7 @@ const styles = StyleSheet.create({
     borderColor: "#777",
     padding: 8,
     margin: 10,
-    width: 100
+    width: 50,
+    height: 25
   }
 });
