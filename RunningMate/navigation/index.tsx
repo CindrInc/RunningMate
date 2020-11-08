@@ -16,6 +16,9 @@ import Mates from "../screens/Mates";
 import History from "../screens/History";
 import Profile from "../screens/Profile";
 import JoinRun from "../screens/JoinRun";
+import Running from "../screens/Running";
+import Login from "../screens/Login";
+
 import { RootStackParamList } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 
@@ -43,6 +46,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="MainScreen" component={MainScreen} />
       <Stack.Screen name="TabOneScreen" component={TabOneScreen} />
       <Stack.Screen name="TabTwoScreen" component={TabTwoScreen} />
@@ -51,6 +55,7 @@ function RootNavigator() {
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Locations" component={Locations} />
       <Stack.Screen name="JoinRun" component={JoinRun} />
+      <Stack.Screen name="Running" component={Running} />
     </Stack.Navigator>
   );
 }

@@ -23,7 +23,7 @@ export default function MainScreen({ navigation }) {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <TouchableOpacity onPress={() => navigation.navigate("TabOneScreen")}>
+      <TouchableOpacity style={styles.mainButton} onPress={() => navigation.navigate("TabOneScreen")}>
         <Text>Start Run</Text>
       </TouchableOpacity>
       <View
@@ -31,7 +31,7 @@ export default function MainScreen({ navigation }) {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <TouchableOpacity onPress={() => navigation.navigate("JoinRun")}>
+      <TouchableOpacity style={styles.mainButton} onPress={() => navigation.navigate("JoinRun")}>
         <Text>Join a mate</Text>
       </TouchableOpacity>
       <View
@@ -39,7 +39,7 @@ export default function MainScreen({ navigation }) {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <TouchableOpacity onPress={() => navigation.navigate("Mates")}>
+      <TouchableOpacity style={styles.mainButton} onPress={() => navigation.navigate("Mates")}>
         <Text>Mates</Text>
       </TouchableOpacity>
       <View
@@ -47,7 +47,7 @@ export default function MainScreen({ navigation }) {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <TouchableOpacity onPress={() => navigation.navigate("History")}>
+      <TouchableOpacity style={styles.mainButton} onPress={() => navigation.navigate("History")}>
         <Text>History</Text>
       </TouchableOpacity>
       <View
@@ -55,7 +55,7 @@ export default function MainScreen({ navigation }) {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+      <TouchableOpacity style={styles.mainButton} onPress={() => navigation.navigate("Profile")}>
         <Text>Profile</Text>
       </TouchableOpacity>
       <View
@@ -63,7 +63,6 @@ export default function MainScreen({ navigation }) {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      
     </View>
   );
 }
@@ -105,5 +104,13 @@ const styles = StyleSheet.create({
     padding: 8,
     margin: 10,
     width: 100
+  },
+  mainButton: {
+    padding: 5,
+    borderRadius: 5,
+    borderWidth: 2,
+    backgroundColor: 'lightblue',
+    width: '30%',
+    textAlign: 'center'
   }
 });

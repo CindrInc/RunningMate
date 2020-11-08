@@ -11,6 +11,7 @@ var runsRouter = require('./routes/runs');
 
 var app = express();
 
+// 34.86.145.66
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

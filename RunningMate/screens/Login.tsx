@@ -15,7 +15,11 @@ export default function Login({ navigation }) {
       <Text style={[styles.text]}>Password</Text>
       <TextInput style={styles.input} />
       <View style={styles.separator1} />
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('MainScreen')}>
+        <Text style={[styles.text]}>Sign In</Text>
+      </TouchableOpacity>
+      <Text>OR</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('MainScreen')}>
         <Text style={[styles.text]}>Create New Account</Text>
       </TouchableOpacity>
       <View style={styles.separator1} />

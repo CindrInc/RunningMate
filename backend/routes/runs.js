@@ -2,6 +2,16 @@ var express = require('express');
 var router = express.Router();
 var dbConn = require('../lib/db');
 
+router.get('/:username', function(req, res, next) {
+  dbConn.query('SELECT name2, distance, date FROM Friends WHERE name1 = ?', req.params.username, function (err, rows) {
+    if (err) {
+      res.json({'runs': []})
+    } else {
+      res.json({'runs': rows });
+    }
+  });
+});
+
 router.post('/new', function (req, res, next) {
   let name1 = req.body.name1;
   let name2 = req.body.name2;

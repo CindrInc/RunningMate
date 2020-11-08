@@ -15,7 +15,7 @@ export default function Mates({ navigation }) {
           darkColor="rgba(255,255,255,0.1)"
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.pop()}>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.pop()}>
         <Text>Back</Text>
       </TouchableOpacity>
     </View>
@@ -45,5 +45,13 @@ const styles = StyleSheet.create({
     padding: 8,
     margin: 10,
     width: 100
+  },
+  backButton: {
+    padding: 5,
+    borderRadius: 5,
+    borderWidth: 2,
+    backgroundColor: 'lightblue',
+    width: '30%',
+    textAlign: 'center'
   }
 });
