@@ -21,8 +21,8 @@ export default function MainScreen({ navigation }) {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <TouchableOpacity onPress={() => navigation.navigate("Friends")}>
-        <Text>Friends</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("Mates")}>
+        <Text>Mates</Text>
       </TouchableOpacity>
       <View
         style={styles.separator}

@@ -7,7 +7,7 @@ import { Text, View } from "../components/Themed";
 export default function Friends({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Friends</Text>
+      <Text style={styles.title}>Mates</Text>
       <TouchableOpacity onPress={() => navigation.navigate("TabOneScreen")}>
         <View
           style={styles.separator}
