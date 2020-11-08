@@ -7,13 +7,13 @@ import { Text, View } from "../components/Themed";
 import { State } from "react-native-gesture-handler";
 
 var radiogroup1_options = [
-  { id: 0, label: "North" },
-  { id: 1, label: "South" }
+  { id: 0, label: <Text style={{ color: "#FFFFFF" }}>{"North"}</Text> },
+  { id: 1, label: <Text style={{ color: "#FFFFFF" }}>{"South"}</Text> }
 ];
 
 var radiogroup2_options = [
-  { id: 0, label: "East", color: "#ffffff" },
-  { id: 1, label: "West" }
+  { id: 0, label: <Text style={{ color: "#FFFFFF" }}>{"East"}</Text> },
+  { id: 1, label: <Text style={{ color: "#FFFFFF" }}>{"West"}</Text> }
 ];
 export default class TabOneScreen extends React.Component {
   constructor(props) {
