@@ -1,8 +1,18 @@
 import * as React from "react";
-import { Alert, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import {
+  Alert,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  Dimensions,
+  Platform,
+  PixelRatio
+} from "react-native";
 
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
+
+width: Dimensions.get("window").width;
 
 export default function MainScreen({ navigation }) {
   return (
@@ -49,6 +59,20 @@ export default function MainScreen({ navigation }) {
   );
 }
 
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
+
+// based on iphone 5s's scale
+const scale = SCREEN_WIDTH / 320;
+
+export function actuatedNormalize(size) {
+  const newSize = size * scale;
+  if (Platform.OS === "ios") {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize));
+  } else {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2;
+  }
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -56,7 +80,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   title: {
-    fontSize: 100,
+    fontSize: actuatedNormalize(25),
     fontFamily: "Optima",
     fontWeight: "bold",
     color: "#64D7FF"
