@@ -1,19 +1,18 @@
 import * as React from 'react';
-import { Alert, StyleSheet, TextInput} from 'react-native';
+import { Alert, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View, Button } from '../components/Themed';
+import { Text, View} from '../components/Themed';
 
-export default function TabOneScreen() {
+export default function TabOneScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>RUNNINGMATE</Text>
       <Text>Enter Distance (Miles):</Text>
       <TextInput style={styles.input} />
-      <Button>
-        title="Enter"
-        onPress={() => }
-      </Button>
+      <TouchableOpacity onPress={() => navigation.navigate('TabTwoScreen') }>
+        <Text>Enter</Text>
+      </TouchableOpacity>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditScreenInfo path="/screens/TabOneScreen.js" />
     </View>
