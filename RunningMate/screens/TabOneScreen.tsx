@@ -7,10 +7,10 @@ import { Text, View } from "../components/Themed";
 export default function TabOneScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>RUNNINGMATE</Text>
+      <Text style={styles.title}>Begin Run</Text>
       <Text>Enter Distance (Miles):</Text>
       <TextInput style={styles.input} />
-      <TouchableOpacity onPress={() => navigation.navigate('Locations') }>
+      <TouchableOpacity onPress={() => navigation.navigate("Locations")}>
         <Text>Enter</Text>
       </TouchableOpacity>
       <View
@@ -18,7 +18,6 @@ export default function TabOneScreen({ navigation }) {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <EditScreenInfo path="/screens/TabOneScreen.js" />
       <TouchableOpacity onPress={() => navigation.navigate("MainScreen")}>
         <Text>Back</Text>
       </TouchableOpacity>
@@ -34,9 +33,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 100,
-    fontWeight: 'bold',
-    fontFamily: 'Menlo',
-    color: 'red'
+    fontFamily: "Optima",
+    fontWeight: "bold",
+    color: "#64D7FF"
   },
   separator: {
     marginVertical: 30,
