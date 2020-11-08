@@ -14,33 +14,40 @@ import { Text, View } from "../components/Themed";
 
 width: Dimensions.get("window").width;
 
-export default function MainScreen({ navigation }) {
-  return (
-    <View adjustsFontSizeToFit style={styles.container}>
-      <Text style={styles.title}>Running Mate</Text>
-      <View style={styles.separator} />
-      <TouchableOpacity style={styles.mainButton} onPress={() => navigation.navigate("TabOneScreen")}>
-        <Text style={[styles.text]}>Start Run</Text>
-      </TouchableOpacity>
-      <View style={styles.separator} />
-      <TouchableOpacity style={styles.mainButton} onPress={() => navigation.navigate("JoinRun")}>
-        <Text style={[styles.text]}>Join a Mate</Text>
-      </TouchableOpacity>
-      <View style={styles.separator} />
-      <TouchableOpacity style={styles.mainButton} onPress={() => navigation.navigate("Mates")}>
-        <Text style={[styles.text]}>Mates</Text>
-      </TouchableOpacity>
-      <View style={styles.separator} />
-      <TouchableOpacity style={styles.mainButton} onPress={() => navigation.navigate("History")}>
-        <Text style={[styles.text]}>History</Text>
-      </TouchableOpacity>
-      <View style={styles.separator} />
-      <TouchableOpacity style={styles.mainButton} onPress={() => navigation.navigate("Profile")}>
-        <Text style={[styles.text]}>Profile</Text>
-      </TouchableOpacity>
-      <View style={styles.separator} />
-    </View>
-  );
+export default class MainScreen extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <View adjustsFontSizeToFit style={styles.container}>
+        <Text style={styles.title}>Running Mate</Text>
+        <View style={styles.separator} />
+        <TouchableOpacity style={styles.mainButton} onPress={() => this.props.navigation.navigate("TabOneScreen", this.props.route.params)}>
+          <Text style={[styles.text]}>Start Run</Text>
+        </TouchableOpacity>
+        <View style={styles.separator} />
+        <TouchableOpacity style={styles.mainButton} onPress={() => this.props.navigation.navigate("JoinRun", this.props.route.params)}>
+          <Text style={[styles.text]}>Join a Mate</Text>
+        </TouchableOpacity>
+        <View style={styles.separator} />
+        <TouchableOpacity style={styles.mainButton} onPress={() => this.props.navigation.navigate("Mates", this.props.route.params)}>
+          <Text style={[styles.text]}>Mates</Text>
+        </TouchableOpacity>
+        <View style={styles.separator} />
+        <TouchableOpacity style={styles.mainButton} onPress={() => this.props.navigation.navigate("History", this.props.route.params)}>
+          <Text style={[styles.text]}>History</Text>
+        </TouchableOpacity>
+        <View style={styles.separator} />
+        <TouchableOpacity style={styles.mainButton} onPress={() => this.props.navigation.navigate("Profile", this.props.route.params)}>
+          <Text style={[styles.text]}>Profile</Text>
+        </TouchableOpacity>
+        <View style={styles.separator} />
+      </View>
+    );
+  }
 }
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
@@ -87,10 +94,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 2,
     backgroundColor: 'lightblue',
-    width: '30%',
     textAlign: 'center'
   },
   text: {
-    color: "#ffffff"
+    color: "black"
   }
 });

@@ -1,33 +1,44 @@
 import * as React from "react";
-import { Alert, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { Alert, Image, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 
-export default function Login({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <View style={styles.separator2} />
-      <Text style={[styles.text]}>Username</Text>
-      <TextInput style={styles.input} />
-      <View style={styles.separator1} />
-      <Text style={[styles.text]}>Password</Text>
-      <TextInput style={styles.input} />
-      <View style={styles.separator1} />
-      <TouchableOpacity onPress={() => navigation.navigate('MainScreen')}>
-        <Text style={[styles.text]}>Sign In</Text>
-      </TouchableOpacity>
-      <Text>OR</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('MainScreen')}>
-        <Text style={[styles.text]}>Create New Account</Text>
-      </TouchableOpacity>
-      <View style={styles.separator1} />
-      <TouchableOpacity onPress={() => navigation.pop()}>
-        <Text style={[styles.text]}>Back</Text>
-      </TouchableOpacity>
-    </View>
-  );
+export default class Login extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: ''
+    };
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Login</Text>
+        <Image source={require('./logo.png')} />
+        <View style={styles.separator2} />
+        <Text style={[styles.text]}>Username</Text>
+        <TextInput style={styles.input} onChangeText={(value) => { this.setState({username: value})}}/>
+        <View style={styles.separator1} />
+        <Text style={[styles.text]}>Password</Text>
+        <TextInput style={styles.input} secureTextEntry={true}/>
+        <View style={styles.separator1} />
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('MainScreen', { username: this.state.username })}>
+          <Text style={[styles.text]}>Sign In</Text>
+        </TouchableOpacity>
+        <Text>OR</Text>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('MainScreen', { username: this.state.username })}>
+          <Text style={[styles.text]}>Create New Account</Text>
+        </TouchableOpacity>
+        <View style={styles.separator1} />
+        <TouchableOpacity onPress={() => this.props.navigation.pop()}>
+          <Text style={[styles.text]}>Back</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

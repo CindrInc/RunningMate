@@ -1,19 +1,61 @@
 import * as React from "react";
-import { Alert, StyleSheet, TextInput, TouchableOpacity} from "react-native";
+import { ActivityIndicator, Alert, StyleSheet, TextInput, TouchableOpacity} from "react-native";
 
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 
-export default function Mates({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Mates</Text>
-      <View style={styles.separator} />
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.pop()}>
-        <Text style={[styles.text]}>Back</Text>
-      </TouchableOpacity>
-    </View>
-  );
+export default class Mates extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      friends: []
+    };
+  }
+
+  componentDidMount() {
+    fetch('http://34.86.145.66:3000/users/' + this.props.route.params.username +'/friends').then(resp => resp.json()).then(resp => {
+      let friends = [];
+      for (let obj of resp['mates']) {
+        friends.push(obj['name2']);
+      }
+      this.setState({
+        loading: false,
+        friends: friends
+      });
+    }).catch(err => {
+      this.setState({
+        loading: false,
+        friends: []
+      });
+    });
+  }
+
+  render() {
+    let view;
+    if (this.state.loading) {
+      view = <ActivityIndicator/>
+    } else {
+      if (this.state.friends.length == 0) {
+        view = <Text style={[styles.text]}>You currently have no friends.</Text>
+      } else {
+        view = this.state.friends.map(name => <Text key={name} style={[styles.text]}>{name}</Text>)
+      }
+    }
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Mates</Text>
+        <View style={styles.separator} />
+        <View>
+          {view}
+        </View>
+        <View style={styles.separator} />
+        <TouchableOpacity style={styles.backButton} onPress={() => this.props.navigation.pop()}>
+          <Text style={[styles.text]}>Back</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -48,6 +90,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   text: {
-    color: "#ffffff"
+    color: "#ffffff",
+    backgroundColor: "black"
   }
 });

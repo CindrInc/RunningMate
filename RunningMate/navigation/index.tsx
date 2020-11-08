@@ -52,7 +52,6 @@ function RootNavigator() {
       <Stack.Screen name="Mates" component={Mates} />
       <Stack.Screen name="History" component={History} />
       <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Locations" component={Locations} />
       <Stack.Screen name="JoinRun" component={JoinRun} />
       <Stack.Screen name="Running" component={Running} />

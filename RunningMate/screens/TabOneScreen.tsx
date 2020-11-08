@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Alert, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { ActivityIndicator, Alert, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import RadioGroup from "../react-native-radio-button-group";
 import { Picker } from "@react-native-picker/picker";
 import EditScreenInfo from "../components/EditScreenInfo";
@@ -15,49 +15,88 @@ var radiogroup2_options = [
   { id: 0, label: "East", color: "#ffffff" },
   { id: 1, label: "West" }
 ];
-export default function TabOneScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Running Mate</Text>
-      <View style={styles.separator} />
-      <Text style={[styles.text]}>Enter Distance (Miles):</Text>
-      <TextInput style={styles.input} />
-      <View style={styles.separator} />
-      <Text style={[styles.text]}>
-        Generally, would you like to go North or South?
-      </Text>
-      <RadioGroup
-        horizontal
-        options={radiogroup1_options}
-        circleStyle={{ fillColor: "pink", borderColor: "pink" }}
-        activeButtonId={0}
-      />
-      <View style={styles.separator} />
-      <Text style={[styles.text]}>
-        Generally, would you like to go East or West?
-      </Text>
-      <RadioGroup
-        horizontal
-        options={radiogroup2_options}
-        circleStyle={{ fillColor: "pink", borderColor: "pink" }}
-        activeButtonId={0}
-      />
-      <View style={styles.separator} />
-      <Text style={[styles.text]}>Choose a mate.</Text>
-      <Picker style={{ height: 25, width: 100 }}>
-        <Picker.Item label="KingNeptune" value="KingNeptune" />
-        <Picker.Item label="kylzhng" value="kylzhng" />
+export default class TabOneScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      distance: 2,
+      friends: [],
+    };
+  }
+
+  componentDidMount() {
+    fetch('http://34.86.145.66:3000/users/' + this.props.route.params.username +'/friends').then(resp => resp.json()).then(resp => {
+      let friends = [];
+      for (let obj of resp['mates']) {
+        friends.push(obj['name2']);
+      }
+      this.setState({
+        loading: false,
+        friends: friends,
+        mate: friends[0]
+      });
+    }).catch(err => {
+      this.setState({
+        loading: false,
+        friends: []
+      });
+    });
+  }
+
+  render() {
+    let view;
+    if (this.state.loading) {
+      view = <ActivityIndicator/>
+    } else {
+      view = <Picker style={{ height: 25, width: 100 }} onValueChange={value => {this.setState({mate: value}); console.log(value)}}>
+        {this.state.friends.map(name => <Picker.Item label={name} value={name} key={name}/>)}
       </Picker>
-      <View style={styles.separator} />
-      <TouchableOpacity onPress={() => navigation.navigate("Locations")}>
-        <Text style={[styles.text]}>Enter</Text>
-      </TouchableOpacity>
-      <View style={styles.separator} />
-      <TouchableOpacity onPress={() => navigation.pop()}>
-        <Text style={[styles.text]}>Back</Text>
-      </TouchableOpacity>
-    </View>
-  );
+    }
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Running Mate</Text>
+        <View style={styles.separator} />
+        <Text style={[styles.text]}>Enter Distance (Miles):</Text>
+        <TextInput style={styles.input} onChangeText={(value) => {this.setState({distance: parseInt(value)})}}/>
+        <View style={styles.separator} />
+        <Text style={[styles.text]}>
+          Generally, would you like to go North or South?
+        </Text>
+        <RadioGroup
+          horizontal
+          options={radiogroup1_options}
+          circleStyle={{ fillColor: "pink", borderColor: "pink" }}
+          activeButtonId={0}
+        />
+        <View style={styles.separator} />
+        <Text style={[styles.text]}>
+          Generally, would you like to go East or West?
+        </Text>
+        <RadioGroup
+          horizontal
+          options={radiogroup2_options}
+          circleStyle={{ fillColor: "pink", borderColor: "pink" }}
+          activeButtonId={0}
+        />
+        <View style={styles.separator} />
+        <Text style={[styles.text]}>Choose a mate.</Text>
+        {view}
+        <View style={styles.separator} />
+        <TouchableOpacity onPress={() => this.props.navigation.navigate("Locations", {
+          distance: this.state.distance,
+          username: this.props.route.params.username,
+          mate: this.state.mate
+        })}>
+          <Text style={[styles.text]}>Enter</Text>
+        </TouchableOpacity>
+        <View style={styles.separator} />
+        <TouchableOpacity onPress={() => this.props.navigation.pop()}>
+          <Text style={[styles.text]}>Back</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -74,7 +113,7 @@ const styles = StyleSheet.create({
     color: "#64D7FF"
   },
   separator: {
-    marginVertical: 30,
+    marginVertical: 15,
     fontWeight: "bold"
   },
   input: {

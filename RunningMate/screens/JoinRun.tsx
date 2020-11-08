@@ -1,29 +1,67 @@
 import * as React from "react";
-import { Alert, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { ActivityIndicator, Alert, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 
-export default function JoinRun({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Join a Mate</Text>
-      <View style={styles.separator} />
-      <Text style={[styles.text]}>Choose a Mate.</Text>
-      <Picker style={{ height: 25, width: 100 }}>
-        <Picker.Item label="KingNeptune" value="KingNeptune" />
-        <Picker.Item label="kylzhng" value="kylzhng" />
+export default class JoinRun extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      friends: []
+    };
+  }
+
+  componentDidMount() {
+    fetch('http://34.86.145.66:3000/users/' + this.props.route.params.username +'/friends').then(resp => resp.json()).then(resp => {
+      let friends = [];
+      for (let obj of resp['mates']) {
+        friends.push(obj['name2']);
+      }
+      this.setState({
+        loading: false,
+        friends: friends,
+        mate: friends[0]
+      });
+    }).catch(err => {
+      this.setState({
+        loading: false,
+        friends: []
+      });
+    });
+  }
+
+  render() {
+    let view;
+    if (this.state.loading) {
+      view = <ActivityIndicator/>
+    } else {
+      view = <Picker style={{ height: 25, width: 100 }} onValueChange={(value) => this.setState({ mate: value })}>
+        {this.state.friends.map(name => <Picker.Item label={name} value={name} key={name}/>)}
       </Picker>
-      <View style={styles.separator} />
-      <TouchableOpacity onPress={() => navigation.navigate("Locations")}>
-        <Text style={[styles.text]}>Enter</Text>
-      </TouchableOpacity>
-      <View style={styles.separator} />
-      <TouchableOpacity onPress={() => navigation.pop()}>
-        <Text style={[styles.text]}>Back</Text>
-      </TouchableOpacity>
-    </View>
-  );
+    }
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Join a Mate</Text>
+        <View style={styles.separator} />
+        <Text style={[styles.text]}>Choose a Mate.</Text>
+        {view}
+        <View style={styles.separator} />
+        <TouchableOpacity onPress={() => this.props.navigation.navigate("Locations", {
+          distance: 5,
+          username: this.props.route.params.username,
+          mate: this.state.mate
+        })}>
+          <Text style={[styles.text]}>Enter</Text>
+        </TouchableOpacity>
+        <View style={styles.separator} />
+        <TouchableOpacity onPress={() => this.props.navigation.pop()}>
+          <Text style={[styles.text]}>Back</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -51,6 +89,7 @@ const styles = StyleSheet.create({
     color: "#ffffff"
   },
   text: {
-    color: "#ffffff"
+    color: "#ffffff",
+    backgroundColor: "black"
   }
 });
