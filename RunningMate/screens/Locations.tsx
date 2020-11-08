@@ -53,10 +53,15 @@ export default class LinksScreen extends React.Component {
     } else {
       view = (
         <View>
-          <Text>Longitude: {this.state.location.coords.longitude}</Text>
-          <Text>Latitude: {this.state.location.coords.latitude}</Text>
+          <Text style={[styles.text]}>
+            Longitude: {this.state.location.coords.longitude}
+          </Text>
+          <Text style={[styles.text]}>
+            Latitude: {this.state.location.coords.latitude}
+          </Text>
+          <View style={styles.separator} />
           <TouchableOpacity onPress={() => this.props.navigation.pop()}>
-            <Text>Back</Text>
+            <Text style={[styles.text]}>Back</Text>
           </TouchableOpacity>
         </View>
       );
@@ -69,14 +74,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 20,
-    backgroundColor: "#fff",
+    backgroundColor: "#000000",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    fontFamily: "Optima"
   },
-  closestStopText: {
-    fontSize: 18,
-    marginBottom: 5,
-    marginLeft: 10
+  separator: {
+    marginVertical: 30,
+    height: 1,
+    width: "25%"
+  },
+  text: {
+    color: "#ffffff",
+    justifyContent: "center"
   }
 });

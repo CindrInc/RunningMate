@@ -18,51 +18,27 @@ export default function MainScreen({ navigation }) {
   return (
     <View adjustsFontSizeToFit style={styles.container}>
       <Text style={styles.title}>Running Mate</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
+      <View style={styles.separator} />
       <TouchableOpacity style={styles.mainButton} onPress={() => navigation.navigate("TabOneScreen")}>
-        <Text>Start Run</Text>
+        <Text style={[styles.text]}>Start Run</Text>
       </TouchableOpacity>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
+      <View style={styles.separator} />
       <TouchableOpacity style={styles.mainButton} onPress={() => navigation.navigate("JoinRun")}>
-        <Text>Join a mate</Text>
+        <Text style={[styles.text]}>Join a Mate</Text>
       </TouchableOpacity>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
+      <View style={styles.separator} />
       <TouchableOpacity style={styles.mainButton} onPress={() => navigation.navigate("Mates")}>
-        <Text>Mates</Text>
+        <Text style={[styles.text]}>Mates</Text>
       </TouchableOpacity>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
+      <View style={styles.separator} />
       <TouchableOpacity style={styles.mainButton} onPress={() => navigation.navigate("History")}>
-        <Text>History</Text>
+        <Text style={[styles.text]}>History</Text>
       </TouchableOpacity>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
+      <View style={styles.separator} />
       <TouchableOpacity style={styles.mainButton} onPress={() => navigation.navigate("Profile")}>
-        <Text>Profile</Text>
+        <Text style={[styles.text]}>Profile</Text>
       </TouchableOpacity>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
+      <View style={styles.separator} />
     </View>
   );
 }
@@ -85,10 +61,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor: "#000000"
   },
   title: {
-    fontSize: actuatedNormalize(25),
+    fontSize: actuatedNormalize(20),
     fontFamily: "Optima",
     fontWeight: "bold",
     color: "#64D7FF"
@@ -96,7 +73,7 @@ const styles = StyleSheet.create({
   separator: {
     marginVertical: 30,
     height: 1,
-    width: "80%"
+    width: "25%"
   },
   input: {
     borderWidth: 1,
@@ -112,5 +89,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightblue',
     width: '30%',
     textAlign: 'center'
+  },
+  text: {
+    color: "#ffffff"
   }
 });
