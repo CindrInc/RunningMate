@@ -10,7 +10,7 @@ export default function TabOneScreen({ navigation }) {
       <Text style={styles.title}>RUNNINGMATE</Text>
       <Text>Enter Distance (Miles):</Text>
       <TextInput style={styles.input} />
-      <TouchableOpacity onPress={() => navigation.navigate("TabTwoScreen")}>
+      <TouchableOpacity onPress={() => navigation.navigate('Locations') }>
         <Text>Enter</Text>
       </TouchableOpacity>
       <View
@@ -34,9 +34,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 100,
-    fontWeight: "bold",
-    fontFamily: "Comic Sans MS",
-    color: "red"
+    fontWeight: 'bold',
+    fontFamily: 'Menlo',
+    color: 'red'
   },
   separator: {
     marginVertical: 30,

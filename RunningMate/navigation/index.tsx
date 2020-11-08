@@ -11,6 +11,7 @@ import MainScreen from "../screens/MainScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
+import Locations from "../screens/Locations";
 import Friends from "../screens/Friends";
 import History from "../screens/History";
 import Profile from "../screens/Profile";
@@ -47,6 +48,7 @@ function RootNavigator() {
       <Stack.Screen name="Friends" component={Friends} />
       <Stack.Screen name="History" component={History} />
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Locations" component={Locations} />
     </Stack.Navigator>
   );
 }
