@@ -4,23 +4,16 @@ import { Alert, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 
-export default function TabOneScreen({ navigation }) {
+export default function Friends({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>RUNNINGMATE</Text>
-      <Text>Enter Distance (Miles):</Text>
-      <TextInput style={styles.input} />
-      <TouchableOpacity onPress={() => navigation.navigate("TabTwoScreen")}>
-        <Text>Enter</Text>
-      </TouchableOpacity>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="/screens/TabOneScreen.js" />
-      <TouchableOpacity onPress={() => navigation.navigate("MainScreen")}>
-        <Text>Back</Text>
+      <Text style={styles.title}>Running Mate</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("TabOneScreen")}>
+        <View
+          style={styles.separator}
+          lightColor="#eee"
+          darkColor="rgba(255,255,255,0.1)"
+        />
       </TouchableOpacity>
     </View>
   );
@@ -34,9 +27,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 100,
+    fontFamily: "Optima",
     fontWeight: "bold",
-    fontFamily: "Comic Sans MS",
-    color: "red"
+    color: "#64D7FF"
   },
   separator: {
     marginVertical: 30,
