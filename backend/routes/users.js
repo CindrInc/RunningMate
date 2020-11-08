@@ -16,15 +16,21 @@ router.get('/:username/friends', function (req, res, next) {
 router.post('/:username/add_friend', function (req, res, next) {
   let name1 = req.params.username;
   let name2 = req.body.friend;
-  var form_data = [[name1, name2], [name2, name1]];
-  res.json({form_data})
-  // dbConn.query('INSERT INTO Friends VALUES ?', form_data, function (err, result) {
-  //   if (err) {
-  //     res.json({'success': false, 'error': err});
-  //   } else {
-  //     res.json({'success': true});
-  //   }
-  // })
+  var d1 = { name1, name2 };
+  var d2 = { name1: name2, name2: name1 };
+  dbConn.query('INSERT INTO Friends SET ?', d1, function (err, result) {
+    if (err) {
+      res.json({'success': false, 'error': err});
+    } else {
+      dbConn.query('INSERT INTO Friends SET ?', d2, function (err, result) {
+        if (err) {
+          res.json({'success': false, 'error': err});
+        } else {
+          res.json({'success': true});
+        }
+      }) 
+    }
+  });
 });
 
 // add a new book
