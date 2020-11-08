@@ -6,7 +6,7 @@ import { Text, View } from "../components/Themed";
 
 export default function MainScreen({ navigation }) {
   return (
-    <View style={styles.container}>
+    <View adjustsFontSizeToFit style={styles.container}>
       <Text style={styles.title}>Running Mate</Text>
       <View
         style={styles.separator}

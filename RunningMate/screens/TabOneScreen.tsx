@@ -41,7 +41,6 @@ export default function TabOneScreen({ navigation }) {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      
       <TouchableOpacity onPress={() => navigation.navigate("MainScreen")}>
         <Text>Back</Text>
       </TouchableOpacity>
