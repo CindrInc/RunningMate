@@ -1,2 +1,1 @@
 # RunningMate
-Kamala Harris
